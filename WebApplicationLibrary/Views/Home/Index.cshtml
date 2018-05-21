@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Library</h1>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Books</h2>
+        <p>
+            You can see wich books our library have.
+        </p>
+        @Html.ActionLink("See books...", "BookController")
+    </div>
+    <div class="col-md-4">
+        <h2>Orders</h2>
+        <p>You can see wich books are ordered.</p>
+        @Html.ActionLink("See orders...", "ShowAllOrdersForm")
+    </div>
+    <div class="col-md-4">
+        <h2>Clients</h2>
+        <p>You can see all library`s clients.</p>
+        @Html.ActionLink("See clients...", "ShowAllClientsForm")
+    </div>
+</div>
