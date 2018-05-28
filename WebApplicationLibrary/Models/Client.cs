@@ -12,6 +12,5 @@ namespace WebApplicationLibrary.Models
         public string Phone { get; set; }
         public string Passport { get; set; }
         public DateTime RegistrationDate { get; set; }
-        //public string Adress { get; set; }
     }
 }

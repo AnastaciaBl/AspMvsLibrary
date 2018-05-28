@@ -9,5 +9,7 @@ namespace WebApplicationLibrary.Models
         public DbSet<Book> Books { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Client> Clients { get; set; }
+        public DbSet<Author> Authors { get; set; }
+        public DbSet<Theme> Themes { get; set; }
     }
 }

@@ -10,107 +10,107 @@ using WebApplicationLibrary.Models;
 
 namespace WebApplicationLibrary.Controllers
 {
-    public class ClientController : Controller
+    public class BooksController : Controller
     {
         private LibraryContext db = new LibraryContext();
 
-        // GET: Client
+        // GET: Books
         public ActionResult Index()
         {
-            return View(db.Clients.ToList());
+            return View(db.Books.ToList());
         }
 
-        // GET: Client/Details/5
+        // GET: Books/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Client client = db.Clients.Find(id);
-            if (client == null)
+            Book book = db.Books.Find(id);
+            if (book == null)
             {
                 return HttpNotFound();
             }
-            return View(client);
+            return View(book);
         }
 
-        // GET: Client/Create
+        // GET: Books/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Client/Create
+        // POST: Books/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FullName,Phone,Passport,RegistrationDate")] Client client)
+        public ActionResult Create([Bind(Include = "Id,Title,Author_Id,Theme_Id,Price")] Book book)
         {
             if (ModelState.IsValid)
             {
-                db.Clients.Add(client);
+                db.Books.Add(book);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(client);
+            return View(book);
         }
 
-        // GET: Client/Edit/5
+        // GET: Books/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Client client = db.Clients.Find(id);
-            if (client == null)
+            Book book = db.Books.Find(id);
+            if (book == null)
             {
                 return HttpNotFound();
             }
-            return View(client);
+            return View(book);
         }
 
-        // POST: Client/Edit/5
+        // POST: Books/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FullName,Phone,Passport,RegistrationDate")] Client client)
+        public ActionResult Edit([Bind(Include = "Id,Title,Author_Id,Theme_Id,Price")] Book book)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(client).State = EntityState.Modified;
+                db.Entry(book).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(client);
+            return View(book);
         }
 
-        // GET: Client/Delete/5
+        // GET: Books/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Client client = db.Clients.Find(id);
-            if (client == null)
+            Book book = db.Books.Find(id);
+            if (book == null)
             {
                 return HttpNotFound();
             }
-            return View(client);
+            return View(book);
         }
 
-        // POST: Client/Delete/5
+        // POST: Books/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Client client = db.Clients.Find(id);
-            db.Clients.Remove(client);
+            Book book = db.Books.Find(id);
+            db.Books.Remove(book);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

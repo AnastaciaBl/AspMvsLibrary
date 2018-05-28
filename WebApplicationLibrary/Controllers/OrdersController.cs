@@ -10,17 +10,17 @@ using WebApplicationLibrary.Models;
 
 namespace WebApplicationLibrary.Controllers
 {
-    public class OrderController : Controller
+    public class OrdersController : Controller
     {
         private LibraryContext db = new LibraryContext();
 
-        // GET: Order
+        // GET: Orders
         public ActionResult Index()
         {
             return View(db.Orders.ToList());
         }
 
-        // GET: Order/Details/5
+        // GET: Orders/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,18 +35,18 @@ namespace WebApplicationLibrary.Controllers
             return View(order);
         }
 
-        // GET: Order/Create
+        // GET: Orders/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Order/Create
+        // POST: Orders/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Id_Book,Id_Client,OrderDate,ReturnDate")] Order order)
+        public ActionResult Create([Bind(Include = "Id_Book,Id_Client,OrderDate,ReturnDate")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +58,7 @@ namespace WebApplicationLibrary.Controllers
             return View(order);
         }
 
-        // GET: Order/Edit/5
+        // GET: Orders/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -73,12 +73,12 @@ namespace WebApplicationLibrary.Controllers
             return View(order);
         }
 
-        // POST: Order/Edit/5
+        // POST: Orders/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Id_Book,Id_Client,OrderDate,ReturnDate")] Order order)
+        public ActionResult Edit([Bind(Include = "Id_Book,Id_Client,OrderDate,ReturnDate")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +89,7 @@ namespace WebApplicationLibrary.Controllers
             return View(order);
         }
 
-        // GET: Order/Delete/5
+        // GET: Orders/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -104,7 +104,7 @@ namespace WebApplicationLibrary.Controllers
             return View(order);
         }
 
-        // POST: Order/Delete/5
+        // POST: Orders/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

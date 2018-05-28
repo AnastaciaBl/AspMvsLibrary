@@ -13,7 +13,7 @@ namespace WebApplicationLibrary.DAL
         {
             var books = new List<Book>
             {
-                new Book { Title = "1984", Author = "George Orwell", Topic = "novel-dystopia", Price = 2.0 }
+                new Book { Title = "1984", Author_Id = 1, Theme_Id = 1, Price = 2.0 }
             };
             books.ForEach(b => context.Books.Add(b));
             context.SaveChanges();
@@ -32,6 +32,18 @@ namespace WebApplicationLibrary.DAL
             };
             orders.ForEach(o => context.Orders.Add(o));
             context.SaveChanges();
+
+            var themes = new List<Theme>
+            {
+                new Theme { Topic = "novel-dystopia" }
+            };
+            themes.ForEach(o => context.Themes.Add(o));
+            context.SaveChanges();
+
+            var authors = new List<Author>
+            {
+                new Author { Name = "George", Surname = "Orwell"}
+            };
         }
     }
 }

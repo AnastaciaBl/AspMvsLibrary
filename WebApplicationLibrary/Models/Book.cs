@@ -8,8 +8,8 @@ namespace WebApplicationLibrary.Models
         [Key]
         public int Id { get; set; }
         public string Title { get; set; }
-        public string Author { get; set; }
-        public string Topic { get; set; }
+        public int Author_Id { get; set; }
+        public int Theme_Id { get; set; }
         public double Price { get; set; }
     }
 }
