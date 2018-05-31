@@ -46,7 +46,7 @@ namespace WebApplicationLibrary.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id_Book,Id_Client,OrderDate,ReturnDate")] Order order)
+        public ActionResult Create([Bind(Include = "Book_Id,Client_Id,OrderDate,ReturnDate,IsCompleted")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace WebApplicationLibrary.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id_Book,Id_Client,OrderDate,ReturnDate")] Order order)
+        public ActionResult Edit([Bind(Include = "Book_Id,Client_Id,OrderDate,ReturnDate,IsCompleted")] Order order)
         {
             if (ModelState.IsValid)
             {

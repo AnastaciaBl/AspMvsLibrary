@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Data.Entity;
 using WebApplicationLibrary.Models;
 
@@ -13,7 +11,7 @@ namespace WebApplicationLibrary.DAL
         {
             var books = new List<Book>
             {
-                new Book { Title = "1984", Author_Id = 1, Theme_Id = 1, Price = 2.0 }
+                new Book { Title = "1984", Theme_Id = 1, Price = 2.0, PenaltyType = Penalty.Medium, IsReturned = false }
             };
             books.ForEach(b => context.Books.Add(b));
             context.SaveChanges();
@@ -28,7 +26,7 @@ namespace WebApplicationLibrary.DAL
 
             var orders = new List<Order>
             {
-                new Order { Id_Book = 1, Id_Client = 2, OrderDate = DateTime.Now, ReturnDate = DateTime.Now.AddDays(7) }
+                new Order { Book_Id = 1, Client_Id = 2, OrderDate = DateTime.Now, ReturnDate = DateTime.Now.AddDays(7), IsCompleted = false }
             };
             orders.ForEach(o => context.Orders.Add(o));
             context.SaveChanges();
@@ -43,6 +41,11 @@ namespace WebApplicationLibrary.DAL
             var authors = new List<Author>
             {
                 new Author { Name = "George", Surname = "Orwell"}
+            };
+
+            var authorBook = new List<AuthorBook>
+            {
+                new AuthorBook { Book_Id = 1, Author_Id = 1}
             };
         }
     }

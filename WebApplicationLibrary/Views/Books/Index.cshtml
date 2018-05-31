@@ -15,13 +15,16 @@
             @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Author_Id)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Theme_Id)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsReturned)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PenaltyType)
         </th>
         <th></th>
     </tr>
@@ -32,13 +35,16 @@
             @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Author_Id)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Theme_Id)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsReturned)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PenaltyType)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
