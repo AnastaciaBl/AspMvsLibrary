@@ -35,18 +35,22 @@ namespace Library.DAL.Context
             {
                 new Theme { Topic = "novel-dystopia" }
             };
-            themes.ForEach(o => context.Themes.Add(o));
+            themes.ForEach(t => context.Themes.Add(t));
             context.SaveChanges();
 
             var authors = new List<Author>
             {
                 new Author { Name = "George", Surname = "Orwell"}
             };
+            authors.ForEach(a => context.Authors.Add(a));
+            context.SaveChanges();
 
             var authorBook = new List<AuthorBook>
             {
                 new AuthorBook { Book_Id = 1, Author_Id = 1}
             };
+            authorBook.ForEach(o => context.Author_Book.Add(o));
+            context.SaveChanges();
         }
     }
 }

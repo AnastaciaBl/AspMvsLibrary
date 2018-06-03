@@ -2,14 +2,13 @@
 
 namespace Library.BLL.DTO
 {
-    public class AuthorDTO
+    public class ThemeDTO
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
+        public string Topic { get; set; }
         public virtual ICollection<BookDTO> Books { get; set; }
 
-        public AuthorDTO()
+        public ThemeDTO()
         {
             Books = new List<BookDTO>();
         }

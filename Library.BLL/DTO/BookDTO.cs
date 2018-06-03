@@ -1,23 +1,21 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using Library.DAL.Entities;
 
-namespace WebApplicationLibrary.Models
+namespace Library.BLL.DTO
 {
-    public class Book
+    public class BookDTO
     {
-        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Key]
         public int Id { get; set; }
         public string Title { get; set; }
         public int Theme_Id { get; set; }
         public double Price { get; set; }
         public bool IsReturned { get; set; }
         public Penalty PenaltyType { get; set; }
-        public virtual ICollection<Author> Authors { get; set; }
+        public virtual ICollection<AuthorDTO> Authors { get; set; }
 
-        public Book()
+        public BookDTO()
         {
-            Authors = new List<Author>();
+            Authors = new List<AuthorDTO>();
         }
     }
 }

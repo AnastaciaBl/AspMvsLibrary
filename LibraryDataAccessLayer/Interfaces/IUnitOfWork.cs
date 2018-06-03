@@ -3,7 +3,7 @@ using Library.DAL.Entities;
 
 namespace Library.DAL.Interfaces
 {
-    interface IUnitOfWork:IDisposable
+    public interface IUnitOfWork:IDisposable
     {
         IRepository<Author> Authors { get; }
         IRepository<AuthorBook> Author_Book { get; }

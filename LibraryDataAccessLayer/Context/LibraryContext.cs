@@ -20,5 +20,14 @@ namespace Library.DAL.Context
         }
 
         public LibraryContext(string connectionString) : base(connectionString) { }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Book>().HasMany(b => b.Authors)
+                .WithMany(a => a.Books)
+                .Map(t => t.MapLeftKey("Book_Id")
+                .MapRightKey("Author_Id")
+                .ToTable("AuthorBooks"));
+        }
     }
 }

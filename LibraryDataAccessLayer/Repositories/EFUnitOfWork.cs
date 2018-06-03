@@ -5,7 +5,7 @@ using Library.DAL.Context;
 
 namespace Library.DAL.Repositories
 {
-    class EFUnitOfWork : IUnitOfWork
+    public class EFUnitOfWork : IUnitOfWork
     {
         private LibraryContext db;
         private AuthorBookRepository authorBookRepository;

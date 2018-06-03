@@ -1,23 +1,20 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 
-namespace WebApplicationLibrary.Models
+namespace Library.BLL.DTO
 {
-    public class Client
+    public class ClientDTO
     {
-        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Key]
         public int Id { get; set; }
         public string FullName { get; set; }
         public string Phone { get; set; }
         public string Passport { get; set; }
         public DateTime RegistrationDate { get; set; }
-        public ICollection<Order> Orders { get; set; }
+        public ICollection<OrderDTO> Orders { get; set; }
 
-        public Client()
+        public ClientDTO()
         {
-            Orders = new List<Order>();
+            Orders = new List<OrderDTO>();
         }
     }
 }

@@ -1,0 +1,11 @@
+﻿@using WebApplicationLibrary.Models;
+
+        @helper HtmlAuthorsList(IEnumerable<AuthorViewModel> authors)
+        {
+            <p>
+                @foreach (var author in authors)
+                {
+                    @author.ToString()<br>
+                }
+            </p>
+        }

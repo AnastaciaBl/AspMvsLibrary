@@ -7,6 +7,7 @@ namespace Library.DAL.Repositories
     {
         public AuthorBookRepository(LibraryContext context) : base(context)
         {
+
         }
     }
 }

@@ -9,8 +9,8 @@ namespace Library.DAL.Repositories
 {
     class AbstractRepository<T> : IRepository<T> where T : class
     {
-        private LibraryContext _db;
-        private DbSet<T> _dbSet;
+        protected LibraryContext _db;
+        protected DbSet<T> _dbSet;
 
         public AbstractRepository(LibraryContext context)
         {
