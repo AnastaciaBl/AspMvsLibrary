@@ -25,6 +25,10 @@ namespace WebApplicationLibrary
             NinjectModule serviceModule = new ServiceModule("DefaultConnection");
             var kernel = new StandardKernel(orderModule, serviceModule);
             DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
+            kernel.Unbind<ModelValidatorProvider>();
+            //var _kernel = new StandardKernel();
+            //_kernel.Unbind<ModelValidatorProvider>();
+            //DependencyResolver.SetResolver(new NinjectDependencyResolver(_kernel));
         }
     }
 }

@@ -68,5 +68,10 @@ namespace Library.BLL.Services
             Database.Books.Update(new Book { Title = book.Title, Theme_Id = book.Theme_Id, Price = book.Price,
                 PenaltyType = book.PenaltyType, IsReturned = book.IsReturned });
         }
+
+        public string GetTheme(int themeID)
+        {
+            return Database.Themes.Get(themeID).Topic;
+        }
     }
 }

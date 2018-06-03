@@ -28,10 +28,14 @@ namespace WebApplicationLibrary.Controllers
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BookDTO, BookViewModel>()).CreateMapper();
             var books = mapper.Map<IEnumerable<BookDTO>, List<BookViewModel>>(bookDtos);
             var authorMapper = new MapperConfiguration(cfg => cfg.CreateMap<AuthorDTO, AuthorViewModel>()).CreateMapper();
-            for(int i=0;i<books.Count;i++)
+            for (int i = 0; i < books.Count; i++)
             {
-                books[i].Authors = authorMapper.Map<IEnumerable<AuthorDTO>, List<AuthorViewModel>>(listBooksDto[i].Authors);
+                books[i].Theme = bookService.GetTheme(listBooksDto[i].Theme_Id);
             }
+            //for(int i=0;i<books.Count;i++)
+            //{
+            //    books[i].Authors = authorMapper.Map<IEnumerable<AuthorDTO>, List<AuthorViewModel>>(listBooksDto[i].Authors);
+            //}
             return View(books);
         }
 

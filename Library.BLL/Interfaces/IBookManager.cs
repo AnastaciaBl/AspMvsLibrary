@@ -13,6 +13,7 @@ namespace Library.BLL.Interfaces
         IEnumerable<BookDTO> GetBookAuthors(int bookID);
         IEnumerable<BookDTO> GetBooksByTheme(string theme);
         IEnumerable<BookDTO> GetBooksByStatus(bool isReturned);
+        string GetTheme(int themeID);
         void Create(BookDTO book);
         void Update(BookDTO book);
         void Delete(int id);
