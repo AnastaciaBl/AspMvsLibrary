@@ -23,11 +23,20 @@
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.Theme, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Theme, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Theme, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Themes, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.SelectedThemeId, Model.Themes.Select(x => new SelectListItem { Text = x.Topic, Value = x.Id.ToString() }),
+                                         new { @class = "form-control chosen-select" })
+                @Html.ValidationMessageFor(model => model.Themes, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -44,7 +53,7 @@
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.SelectedAuthorId, Model.Authors.Select(x => new SelectListItem { Text = x.ToString(), Value = x.Id.ToString() }),
                                          new { @class = "form-control chosen-select", @multiple = "multiple" })
-                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Authors, "", new { @class = "text-danger" })
             </div>
         </div>
 

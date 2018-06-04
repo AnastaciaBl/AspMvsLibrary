@@ -20,6 +20,8 @@ namespace WebApplicationLibrary.Models
         public IEnumerable<AuthorViewModel> Authors { get; set; }
         public IEnumerable<DropDownList> AuthorsSelectList { get; set; }
         public List<int> SelectedAuthorId { get; set; }
+        public List<ThemeViewModel> Themes { get; set; }
+        public int SelectedThemeId { get; set; }
 
         public BookViewModel()
         {

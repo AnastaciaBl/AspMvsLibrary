@@ -89,6 +89,12 @@ namespace Library.BLL.Services
             return Database.Themes.Get(themeID).Topic;
         }
 
+        public List<ThemeDTO> GetAllTheme()
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Theme, ThemeDTO>()).CreateMapper();
+            return mapper.Map<IEnumerable<Theme>, IEnumerable<ThemeDTO>>(Database.Themes.GetAll()).ToList();
+        }
+
         public IEnumerable<AuthorDTO> GetAuthors(int bookID)
         {
             IEnumerable<AuthorBook> authorsIds = Database.Author_Book.SqlQuery("SELECT * FROM dbo.AuthorBooks WHERE Book_Id = @Book_Id", new SqlParameter("@Book_Id", bookID));

@@ -49,10 +49,13 @@ namespace WebApplicationLibrary.Controllers
         public ActionResult Create()
         {
             var listAuthorsDto = authorService.GetAuthors();
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<AuthorDTO, AuthorViewModel>()).CreateMapper();
+            var mapperAuthor = new MapperConfiguration(cfg => cfg.CreateMap<AuthorDTO, AuthorViewModel>()).CreateMapper();
+            var listThemesDto = bookService.GetAllTheme();
+            var mapperTheme = new MapperConfiguration(cfg => cfg.CreateMap<ThemeDTO, ThemeViewModel>()).CreateMapper();
             var book = new BookViewModel()
             {
-                Authors = mapper.Map<IEnumerable<AuthorDTO>, List<AuthorViewModel>>(listAuthorsDto)
+                Authors = mapperAuthor.Map<IEnumerable<AuthorDTO>, List<AuthorViewModel>>(listAuthorsDto),
+                Themes = mapperTheme.Map<List<ThemeDTO>, List<ThemeViewModel>>(listThemesDto)
             };
             return View(book);
         }
@@ -69,7 +72,7 @@ namespace WebApplicationLibrary.Controllers
                 var bookCreate = new BookDTO()
                 {
                     Title = book.Title,
-                    Theme_Id = 1,
+                    Theme_Id = book.SelectedThemeId,
                     Price = book.Price,
                     PenaltyType = Library.DAL.Entities.Penalty.Medium,
                     //Authors = authors
