@@ -19,6 +19,7 @@ namespace WebApplicationLibrary.Models
         //public Penalty PenaltyType { get; set; }
         public IEnumerable<AuthorViewModel> Authors { get; set; }
         public IEnumerable<DropDownList> AuthorsSelectList { get; set; }
+        public List<int> SelectedAuthorId { get; set; }
 
         public BookViewModel()
         {

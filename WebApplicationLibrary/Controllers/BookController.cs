@@ -14,10 +14,12 @@ namespace WebApplicationLibrary.Controllers
     public class BookController : Controller
     {
         IBookManager bookService;
+        IAuthorManager authorService;
 
-        public BookController(IBookManager serv)
+        public BookController(IBookManager serv, IAuthorManager authorServ)
         {
             bookService = serv;
+            authorService = authorServ;
         }
 
         // GET: Book
@@ -46,17 +48,33 @@ namespace WebApplicationLibrary.Controllers
         // GET: Book/Create
         public ActionResult Create()
         {
-            return View();
+            var listAuthorsDto = authorService.GetAuthors();
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<AuthorDTO, AuthorViewModel>()).CreateMapper();
+            var book = new BookViewModel()
+            {
+                Authors = mapper.Map<IEnumerable<AuthorDTO>, List<AuthorViewModel>>(listAuthorsDto)
+            };
+            return View(book);
         }
 
         // POST: Book/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(BookViewModel book)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                List<AuthorDTO> authors = new List<AuthorDTO>();
+                for (int i = 0; i < book.SelectedAuthorId.Count; i++)
+                    authors.Add(authorService.GetAuthor(book.SelectedAuthorId[i]));
+                var bookCreate = new BookDTO()
+                {
+                    Title = book.Title,
+                    Theme_Id = 1,
+                    Price = book.Price,
+                    PenaltyType = Library.DAL.Entities.Penalty.Medium,
+                    //Authors = authors
+                };
+                bookService.Create(bookCreate, book.SelectedAuthorId);
                 return RedirectToAction("Index");
             }
             catch

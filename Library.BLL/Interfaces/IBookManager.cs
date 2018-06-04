@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Library.BLL.DTO;
 
 namespace Library.BLL.Interfaces
@@ -13,7 +9,7 @@ namespace Library.BLL.Interfaces
         IEnumerable<AuthorDTO> GetAuthors(int bookID);
         BookDTO GetBook(int id);
         string GetTheme(int themeID);
-        void Create(BookDTO book);
+        void Create(BookDTO book, List<int> authorsIds);
         void Update(BookDTO book);
         void Delete(int id);
     }

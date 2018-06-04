@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Library.BLL.DTO;
 using Library.BLL.Interfaces;
 using Library.BLL.Infrastructure;
@@ -20,23 +21,30 @@ namespace Library.BLL.Services
         }
 
         //добавить запись в таблицу AuthorBook
-        public void Create(BookDTO _book)
+        public void Create(BookDTO _book, List<int> authorsIds)
         {
-            Theme theme = Database.Themes.Get(_book.Theme_Id);
-
-            if (theme == null) throw new ValidationException("Theme wasn`t found.", "");
-            //if (_book.Authors.Count == 0) throw new ValidationException("Authors weren`t found.", "");
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Author, AuthorDTO>()).CreateMapper();
             Book book = new Book
             {
                 Title = _book.Title,
-                Theme_Id = theme.Id,
+                Theme_Id = _book.Theme_Id,
                 Price = _book.Price,
                 IsReturned = true,
                 PenaltyType = _book.PenaltyType,
                 //Authors = mapper.Map<IEnumerable<AuthorDTO>, List<Author>>(_book.Authors)
             };
             Database.Books.Create(book);
+            var lastBook = Database.Books.GetAll().ToList().OrderByDescending(x => x.Id).FirstOrDefault();
+            List<AuthorBook> authorBooks = new List<AuthorBook>();
+            for (int i = 0; i < authorsIds.Count; i++)
+            {
+                var authorBookCreate = new AuthorBook()
+                {
+                    Book_Id = lastBook.Id,
+                    Author_Id = authorsIds[i]
+                };
+                Database.Author_Book.Create(authorBookCreate);
+            }
         }
 
         public void Delete(int id)
