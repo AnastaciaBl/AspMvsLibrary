@@ -43,12 +43,18 @@ namespace WebApplicationLibrary.Controllers
 
         // POST: Client/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(ClientViewModel client)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                var clientCreate = new ClientDTO()
+                {
+                    FullName = client.FullName,
+                    Phone = client.Phone,
+                    Passport = client.Passport,
+                    RegistrationDate = DateTime.Now
+                };
+                clientService.Create(clientCreate);
                 return RedirectToAction("Index");
             }
             catch
@@ -60,17 +66,32 @@ namespace WebApplicationLibrary.Controllers
         // GET: Client/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var client = clientService.GetClient(id);
+            var viewModel = new ClientViewModel()
+            {
+                Id = client.Id,
+                FullName = client.FullName,
+                Phone = client.Phone,
+            };
+            return View(viewModel);
         }
 
         // POST: Client/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, ClientViewModel client)
         {
+            var clientOld = clientService.GetClient(id);
             try
             {
-                // TODO: Add update logic here
-
+                var clientUpdate = new ClientDTO()
+                {
+                    Id = id,
+                    FullName = client.FullName,
+                    Phone = client.Phone,
+                    Passport = clientOld.Passport,
+                    RegistrationDate = clientOld.RegistrationDate
+                };
+                clientService.Update(clientUpdate);
                 return RedirectToAction("Index");
             }
             catch
@@ -82,23 +103,8 @@ namespace WebApplicationLibrary.Controllers
         // GET: Client/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
-        }
-
-        // POST: Client/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            clientService.Delete(id);
+            return RedirectToAction("Index");
         }
     }
 }

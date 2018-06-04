@@ -52,7 +52,6 @@ namespace WebApplicationLibrary.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
                 var authorCreate = new AuthorDTO()
                 {
                     Name = collection["Name"],
@@ -92,7 +91,6 @@ namespace WebApplicationLibrary.Controllers
             var author = authorService.GetAuthor(id);
             try
             {
-                // TODO: Add update logic here
                 var authorUpdate = new AuthorDTO()
                 {
                     Id = Convert.ToInt32(collection["Id"].ToString()),
