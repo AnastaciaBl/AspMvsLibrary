@@ -10,6 +10,7 @@ namespace WebApplicationLibrary.Util
         {
             Bind<IBookManager>().To<BookManager>();
             Bind<IAuthorManager>().To<AuthorManager>();
+            Bind<IClientManager>().To<ClientManager>();
         }
     }
 }

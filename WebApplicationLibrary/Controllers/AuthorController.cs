@@ -53,7 +53,12 @@ namespace WebApplicationLibrary.Controllers
             try
             {
                 // TODO: Add insert logic here
-
+                var authorCreate = new AuthorDTO()
+                {
+                    Name = collection["Name"],
+                    Surname = collection["Surname"]
+                };
+                authorService.Create(authorCreate);
                 return RedirectToAction("Index");
             }
             catch
@@ -106,23 +111,8 @@ namespace WebApplicationLibrary.Controllers
         // GET: Author/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
-        }
-
-        // POST: Author/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            authorService.Delete(id);
+            return RedirectToAction("Index");
         }
     }
 }

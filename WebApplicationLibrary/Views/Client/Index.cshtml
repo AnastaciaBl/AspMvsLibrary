@@ -1,21 +1,10 @@
-﻿@model IEnumerable<WebApplicationLibrary.Models.AuthorViewModel>
-@using WebApplicationLibrary.Models;
+﻿@model IEnumerable<WebApplicationLibrary.Models.ClientViewModel>
 
 @{
     ViewBag.Title = "Index";
 }
 
-@helper HtmlBooksList(IEnumerable<BookViewModel> books)
-        {
-    <p>
-        @foreach (var book in books)
-        {
-            @book.Title<br>
-        }
-    </p>
-}
-
-<h2>Authors</h2>
+<h2>Clients</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -23,13 +12,16 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.FullName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Surname)
+            @Html.DisplayNameFor(model => model.Phone)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Books)
+            @Html.DisplayNameFor(model => model.Passport)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RegistrationDate)
         </th>
         <th></th>
     </tr>
@@ -37,13 +29,16 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.DisplayFor(modelItem => item.FullName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Surname)
+            @Html.DisplayFor(modelItem => item.Phone)
         </td>
         <td>
-            @HtmlBooksList(item.Books)
+            @Html.DisplayFor(modelItem => item.Passport)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RegistrationDate)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
