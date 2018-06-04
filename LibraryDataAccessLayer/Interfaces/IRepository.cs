@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace Library.DAL.Interfaces
 {
@@ -11,5 +12,6 @@ namespace Library.DAL.Interfaces
         void Create(T item);
         void Update(T item);
         void Delete(int id);
+        IEnumerable<T> SqlQuery(string v, SqlParameter sqlParameter);
     }
 }

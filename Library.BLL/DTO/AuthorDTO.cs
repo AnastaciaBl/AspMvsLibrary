@@ -7,11 +7,11 @@ namespace Library.BLL.DTO
         public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public virtual ICollection<BookDTO> Books { get; set; }
+        //public virtual ICollection<BookDTO> Books { get; set; }
 
-        public AuthorDTO()
-        {
-            Books = new List<BookDTO>();
-        }
+        //public AuthorDTO()
+        //{
+        //    Books = new List<BookDTO>();
+        //}
     }
 }

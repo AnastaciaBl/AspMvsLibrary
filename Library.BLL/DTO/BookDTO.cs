@@ -11,11 +11,11 @@ namespace Library.BLL.DTO
         public double Price { get; set; }
         public bool IsReturned { get; set; }
         public Penalty PenaltyType { get; set; }
-        public virtual ICollection<AuthorDTO> Authors { get; set; }
+        //public virtual ICollection<AuthorDTO> Authors { get; set; }
 
-        public BookDTO()
-        {
-            Authors = new List<AuthorDTO>();
-        }
+        //public BookDTO()
+        //{
+        //    Authors = new List<AuthorDTO>();
+        //}
     }
 }

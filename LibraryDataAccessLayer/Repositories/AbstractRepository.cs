@@ -4,6 +4,7 @@ using System.Linq;
 using Library.DAL.Interfaces;
 using Library.DAL.Context;
 using System.Data.Entity;
+using System.Data.SqlClient;
 
 namespace Library.DAL.Repositories
 {
@@ -21,12 +22,14 @@ namespace Library.DAL.Repositories
         public void Create(T item)
         {
             _dbSet.Add(item);
+            _db.SaveChanges();
         }
 
         public void Delete(int id)
         {
             T entity = _dbSet.Find(id);
             _dbSet.Remove(entity);
+            _db.SaveChanges();
         }
 
         public IEnumerable<T> Find(Func<T, bool> predicate)
@@ -44,9 +47,15 @@ namespace Library.DAL.Repositories
             return _dbSet.AsNoTracking().ToList();
         }
 
+        public IEnumerable<T> SqlQuery(string v, SqlParameter sqlParameter)
+        {
+            return _dbSet.SqlQuery(v, sqlParameter);
+        }
+
         public void Update(T item)
         {
             _db.Entry(item).State = EntityState.Modified;
+            _db.SaveChanges();
         }
     }
 }

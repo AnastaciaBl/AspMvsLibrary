@@ -2,6 +2,8 @@
 using System.ComponentModel.DataAnnotations;
 using Library.BLL.DTO;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.Mvc;
+using System.Web.UI.WebControls;
 
 namespace WebApplicationLibrary.Models
 {
@@ -11,25 +13,16 @@ namespace WebApplicationLibrary.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public string Theme { get; set; }
+        public int ThemeId { get; set; }
         public double Price { get; set; }
         public bool IsReturned { get; set; }
         //public Penalty PenaltyType { get; set; }
-        public virtual ICollection<AuthorViewModel> Authors { get; set; }
+        public IEnumerable<AuthorViewModel> Authors { get; set; }
+        public IEnumerable<DropDownList> AuthorsSelectList { get; set; }
 
         public BookViewModel()
         {
             Authors = new List<AuthorViewModel>();
-        }
-
-        public BookViewModel(BookDTO _book, ICollection<AuthorDTO> _author):this()
-        {
-            Id = _book.Id;
-            Title = _book.Title;
-            //Theme_Id = _book.Theme_Id;
-            Price = _book.Price;
-            IsReturned = _book.IsReturned;
-            foreach(var a in _author)
-                Authors.Add(new AuthorViewModel(a));
         }
     }
 }

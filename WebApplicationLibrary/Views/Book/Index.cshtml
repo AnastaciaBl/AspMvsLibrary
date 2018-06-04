@@ -1,7 +1,18 @@
 ﻿@model IEnumerable<WebApplicationLibrary.Models.BookViewModel>
+@using WebApplicationLibrary.Models;
 
 @{
     ViewBag.Title = "Index";
+}
+
+@helper HtmlAuthorsList(IEnumerable<AuthorViewModel> authors)
+        {
+    <p>
+        @foreach (var author in authors)
+        {
+            @author.ToString()<br>
+        }
+    </p>
 }
 
 <h2>Books list</h2>
@@ -23,6 +34,9 @@
         <th>
             @Html.DisplayNameFor(model => model.IsReturned)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Authors)
+        </th>
         <th></th>
     </tr>
 
@@ -42,11 +56,11 @@
                 @Html.DisplayFor(modelItem => item.IsReturned)
             </td>
             <td>
-                @MyHelpers.HtmlAuthorsList(item.Authors)
+                @HtmlAuthorsList(item.Authors)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @*@Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>

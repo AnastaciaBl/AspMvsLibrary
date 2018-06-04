@@ -10,9 +10,8 @@ namespace Library.BLL.Interfaces
     public interface IBookManager
     {
         IEnumerable<BookDTO> GetBooks();
-        IEnumerable<BookDTO> GetBookAuthors(int bookID);
-        IEnumerable<BookDTO> GetBooksByTheme(string theme);
-        IEnumerable<BookDTO> GetBooksByStatus(bool isReturned);
+        IEnumerable<AuthorDTO> GetAuthors(int bookID);
+        BookDTO GetBook(int id);
         string GetTheme(int themeID);
         void Create(BookDTO book);
         void Update(BookDTO book);

@@ -31,11 +31,9 @@ namespace WebApplicationLibrary.Controllers
             for (int i = 0; i < books.Count; i++)
             {
                 books[i].Theme = bookService.GetTheme(listBooksDto[i].Theme_Id);
+                IEnumerable<AuthorDTO> authorsDtos = bookService.GetAuthors(books[i].Id).ToList();
+                books[i].Authors = authorMapper.Map<IEnumerable<AuthorDTO>, List<AuthorViewModel>>(authorsDtos);
             }
-            //for(int i=0;i<books.Count;i++)
-            //{
-            //    books[i].Authors = authorMapper.Map<IEnumerable<AuthorDTO>, List<AuthorViewModel>>(listBooksDto[i].Authors);
-            //}
             return View(books);
         }
 
@@ -70,17 +68,42 @@ namespace WebApplicationLibrary.Controllers
         // GET: Book/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            //var model = new BookViewModel();
+            var book = bookService.GetBook(id);
+            var authorMapper = new MapperConfiguration(cfg => cfg.CreateMap<AuthorDTO, AuthorViewModel>()).CreateMapper();
+            var viewModel = new BookViewModel()
+            {
+                Id = book.Id,
+                Title = book.Title,
+                ThemeId = book.Theme_Id,
+                Theme = bookService.GetTheme(book.Theme_Id),
+                Price = book.Price,
+                IsReturned = book.IsReturned,
+                Authors = authorMapper.Map<IEnumerable<AuthorDTO>, List<AuthorViewModel>>(bookService.GetAuthors(id))
+            };
+            ViewData["AllAuthors"] = from author in viewModel.Authors
+                                          select new SelectListItem { Text = author.ToString(), Value = author.Id.ToString() };
+            return View(viewModel);
         }
 
         // POST: Book/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
+            var book = bookService.GetBook(id);
             try
             {
                 // TODO: Add update logic here
-
+                var bookUpdate = new BookDTO()
+                {
+                    Id = Convert.ToInt32(collection["Id"].ToString()),
+                    Title = collection["Title"].ToString(),
+                    Theme_Id = book.Theme_Id,
+                    Price = Convert.ToDouble(collection["Price"].ToString()),
+                    IsReturned = Convert.ToBoolean(collection["IsReturned"].ToString()),
+                    PenaltyType = book.PenaltyType
+                };
+                bookService.Update(bookUpdate);
                 return RedirectToAction("Index");
             }
             catch

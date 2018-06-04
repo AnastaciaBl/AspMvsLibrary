@@ -9,6 +9,7 @@ namespace WebApplicationLibrary.Util
         public override void Load()
         {
             Bind<IBookManager>().To<BookManager>();
+            Bind<IAuthorManager>().To<AuthorManager>();
         }
     }
 }

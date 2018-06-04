@@ -11,7 +11,8 @@ namespace Library.DAL.Context
         {
             var books = new List<Book>
             {
-                new Book { Title = "1984", Theme_Id = 1, Price = 2.0, PenaltyType = Penalty.Medium, IsReturned = false }
+                new Book { Title = "1984", Theme_Id = 1, Price = 2.0, PenaltyType = Penalty.Medium, IsReturned = false },
+                new Book { Title = "Animal Farm", Theme_Id = 2, Price = 3.0, PenaltyType = Penalty.Medium, IsReturned = true }
             };
             books.ForEach(b => context.Books.Add(b));
             context.SaveChanges();
@@ -33,7 +34,8 @@ namespace Library.DAL.Context
 
             var themes = new List<Theme>
             {
-                new Theme { Topic = "novel-dystopia" }
+                new Theme { Topic = "novel-dystopia" },
+                new Theme { Topic = "tale" }
             };
             themes.ForEach(t => context.Themes.Add(t));
             context.SaveChanges();
@@ -47,7 +49,8 @@ namespace Library.DAL.Context
 
             var authorBook = new List<AuthorBook>
             {
-                new AuthorBook { Book_Id = 1, Author_Id = 1}
+                new AuthorBook { Book_Id = 1, Author_Id = 1 },
+                new AuthorBook { Book_Id = 2, Author_Id = 1 }
             };
             authorBook.ForEach(o => context.Author_Book.Add(o));
             context.SaveChanges();

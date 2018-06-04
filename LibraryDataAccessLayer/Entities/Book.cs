@@ -13,11 +13,11 @@ namespace Library.DAL.Entities
         public double Price { get; set; }
         public bool IsReturned { get; set; }
         public Penalty PenaltyType { get; set; }
-        public virtual ICollection<Author> Authors { get; set; }
+        //public virtual ICollection<Author> Authors { get; set; }
 
-        public Book()
-        {
-            Authors = new List<Author>();
-        }
+        //public Book()
+        //{
+        //    Authors = new List<Author>();
+        //}
     }
 }
