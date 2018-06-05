@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace WebApplicationLibrary.Models
 {
@@ -11,5 +12,10 @@ namespace WebApplicationLibrary.Models
         public DateTime OrderDate { get; set; }
         public DateTime ReturnDate { get; set; }
         public bool IsCompleted { get; set; }
+        public double ActualPenalty { get; set; }
+        public List<int> SelectedBookId { get; set; }
+        public List<BookViewModel> Books { get; set; }
+        public int SelectedClientId { get; set; }
+        public List<ClientViewModel> Clients { get; set; }
     }
 }

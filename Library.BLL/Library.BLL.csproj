@@ -63,10 +63,12 @@
     <Compile Include="Interfaces\IAuthorManager.cs" />
     <Compile Include="Interfaces\IBookManager.cs" />
     <Compile Include="Interfaces\IClientManager.cs" />
+    <Compile Include="Interfaces\IOrderManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuthorManager.cs" />
     <Compile Include="Services\BookManager.cs" />
     <Compile Include="Services\ClientManager.cs" />
+    <Compile Include="Services\OrderManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

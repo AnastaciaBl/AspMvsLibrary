@@ -27,7 +27,7 @@ namespace Library.DAL.Context
 
             var orders = new List<Order>
             {
-                new Order { Book_Id = 1, Client_Id = 2, OrderDate = DateTime.Now, ReturnDate = DateTime.Now.AddDays(7), IsCompleted = false }
+                new Order { Book_Id = 1, Client_Id = 2, OrderDate = DateTime.Now.AddDays(-14).Date, ReturnDate = DateTime.Now.AddDays(-7).Date, IsCompleted = false }
             };
             orders.ForEach(o => context.Orders.Add(o));
             context.SaveChanges();

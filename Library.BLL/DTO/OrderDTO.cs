@@ -9,5 +9,6 @@ namespace Library.BLL.DTO
         public DateTime OrderDate { get; set; }
         public DateTime ReturnDate { get; set; }
         public bool IsCompleted { get; set; }
+        public double ActualPenalty { get; set; }
     }
 }
