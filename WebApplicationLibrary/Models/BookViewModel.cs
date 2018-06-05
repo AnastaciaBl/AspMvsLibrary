@@ -15,6 +15,7 @@ namespace WebApplicationLibrary.Models
         public string Theme { get; set; }
         public int ThemeId { get; set; }
         public double Price { get; set; }
+        [Display(Name = "Available")]
         public bool IsReturned { get; set; }
         //public Penalty PenaltyType { get; set; }
         public IEnumerable<AuthorViewModel> Authors { get; set; }

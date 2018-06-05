@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Library.BLL.DTO;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebApplicationLibrary.Models
 {
     public class AuthorViewModel
     {
         public int Id { get; set; }
+        [Required(AllowEmptyStrings = false)]
         public string Name { get; set; }
+        [Required(AllowEmptyStrings = false)]
         public string Surname { get; set; }
         public virtual IEnumerable<BookViewModel> Books { get; set; }
 
