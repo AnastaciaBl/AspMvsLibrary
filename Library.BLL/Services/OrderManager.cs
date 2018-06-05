@@ -4,7 +4,6 @@ using Library.BLL.DTO;
 using Library.DAL.Interfaces;
 using AutoMapper;
 using Library.DAL.Entities;
-using System.Data.SqlClient;
 using System;
 using System.Linq;
 
@@ -38,11 +37,6 @@ namespace Library.BLL.Services
             }
         }
 
-        //public void Delete(int bookId, int clientId, DateTime orderDate)
-        //{
-
-        //}
-
         public OrderDTO GetOrder(int bookId, int clientId, DateTime orderDate)
         {
             Order orderResult = getOrderByKeyField(bookId, clientId, orderDate);
@@ -53,7 +47,7 @@ namespace Library.BLL.Services
                 OrderDate = orderResult.OrderDate,
                 ReturnDate = orderResult.ReturnDate,
                 IsCompleted = orderResult.IsCompleted,
-                ActualPenalty = countPenalty(orderResult.OrderDate, orderResult.ReturnDate, orderResult.Book_Id)
+                ActualPenalty = countPenalty(orderResult.OrderDate, orderResult.ReturnDate, orderResult.Book_Id, orderResult.IsCompleted)
             };
             return orderDtoReturn;
         }
@@ -63,7 +57,7 @@ namespace Library.BLL.Services
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Order, OrderDTO>()).CreateMapper();
             var orders = mapper.Map<IEnumerable<Order>, IEnumerable<OrderDTO>>(Database.Orders.GetAll()).ToList();
             for (int i = 0; i < orders.Count; i++)
-                orders[i].ActualPenalty = countPenalty(orders[i].OrderDate, orders[i].ReturnDate, orders[i].Book_Id);
+                orders[i].ActualPenalty = countPenalty(orders[i].OrderDate, orders[i].ReturnDate, orders[i].Book_Id, orders[i].IsCompleted);
             return orders;
         }
 
@@ -78,17 +72,26 @@ namespace Library.BLL.Services
                 updateBook.IsReturned = true;
                 Database.Books.Update(updateBook);
             }
+            else
+            {
+                var updateBook = Database.Books.Get(order.Book_Id);
+                updateBook.IsReturned = false;
+                Database.Books.Update(updateBook);
+            }
         }
 
-        private double countPenalty(DateTime orderDate, DateTime returnDate, int bookId)
+        private double countPenalty(DateTime orderDate, DateTime returnDate, int bookId, bool isOrderCompleted)
         {
             double penalty = 0;
-            DateTime now = DateTime.Now;
-            if(now>returnDate)
+            if (!isOrderCompleted)
             {
-                Book book = Database.Books.Get(bookId);
-                double over = book.Price * 0.3;
-                penalty = Math.Abs((now.Day - returnDate.Day) * over);
+                DateTime now = DateTime.Now;
+                if (now > returnDate)
+                {
+                    Book book = Database.Books.Get(bookId);
+                    double over = book.Price * 0.3;
+                    penalty = now.Subtract(returnDate).TotalDays * over;
+                }
             }
             return penalty;
         }
