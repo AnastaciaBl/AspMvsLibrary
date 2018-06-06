@@ -96,14 +96,14 @@ namespace WebApplicationLibrary.Controllers
             {
                 Id = book.Id,
                 Title = book.Title,
-                ThemeId = book.Theme_Id,
-                Theme = bookService.GetTheme(book.Theme_Id),
+                //ThemeId = book.Theme_Id,
+                //Theme = bookService.GetTheme(book.Theme_Id),
                 Price = book.Price,
-                IsReturned = book.IsReturned,
-                Authors = authorMapper.Map<IEnumerable<AuthorDTO>, List<AuthorViewModel>>(bookService.GetAuthors(id))
+                //IsReturned = book.IsReturned,
+                //Authors = authorMapper.Map<IEnumerable<AuthorDTO>, List<AuthorViewModel>>(bookService.GetAuthors(id))
             };
-            ViewData["AllAuthors"] = from author in viewModel.Authors
-                                          select new SelectListItem { Text = author.ToString(), Value = author.Id.ToString() };
+            //ViewData["AllAuthors"] = from author in viewModel.Authors
+            //                              select new SelectListItem { Text = author.ToString(), Value = author.Id.ToString() };
             return View(viewModel);
         }
 
@@ -119,9 +119,9 @@ namespace WebApplicationLibrary.Controllers
                 {
                     Id = Convert.ToInt32(collection["Id"].ToString()),
                     Title = collection["Title"].ToString(),
-                    Theme_Id = book.Theme_Id,
+                    //Theme_Id = book.Theme_Id,
                     Price = Convert.ToDouble(collection["Price"].ToString()),
-                    IsReturned = Convert.ToBoolean(collection["IsReturned"].ToString()),
+                    //IsReturned = Convert.ToBoolean(collection["IsReturned"].ToString()),
                     PenaltyType = book.PenaltyType
                 };
                 bookService.Update(bookUpdate);

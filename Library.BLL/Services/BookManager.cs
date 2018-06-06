@@ -77,10 +77,10 @@ namespace Library.BLL.Services
         {
             var updateBook = Database.Books.Get(book.Id);
             updateBook.Title = book.Title;
-            updateBook.Theme_Id = book.Theme_Id;
+            //updateBook.Theme_Id = book.Theme_Id;
             updateBook.Price = book.Price;
             updateBook.PenaltyType = book.PenaltyType;
-            updateBook.IsReturned = book.IsReturned;
+            //updateBook.IsReturned = book.IsReturned;
             Database.Books.Update(updateBook);
         }
 
